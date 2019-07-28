@@ -1,6 +1,11 @@
 import org.scalatest.FunSuite
 
 class ShoppingCartSuite extends FunSuite  {
+    test("No items should cost 0") {
+        val cart = new ShoppingCart()
+        assert(cart.Total === 0)
+    }
+
     test("One Apple should cost 50") {
         val cart = new ShoppingCart()
         cart.Scan("Apple")
@@ -30,5 +35,12 @@ class ShoppingCartSuite extends FunSuite  {
         cart.Scan("Apple")
         cart.Scan("Apple")
         assert(cart.Total === 100)
+    }
+
+    test("One Apple and One Banana should cost 70") {
+        val cart = new ShoppingCart()
+        cart.Scan("Apple")
+        cart.Scan("Banana")
+        assert(cart.Total === 70)
     }
 }
