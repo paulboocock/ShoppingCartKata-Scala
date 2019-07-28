@@ -76,4 +76,19 @@ class ShoppingCartSuite extends FunSuite with BeforeAndAfter {
         cart.Scan("Apple")
         assert(cart.Total === 240)
     }
+
+    test("Five Bananas should cost 80") {
+        cart.Scan("Banana")
+        cart.Scan("Banana")
+        cart.Scan("Banana")
+        cart.Scan("Banana")
+        cart.Scan("Banana")
+        assert(cart.Total === 80)
+    }
+
+    test("Two Turnips should cost 75") {
+        cart.Scan("Turnip")
+        cart.Scan("Turnip")
+        assert(cart.Total === 75)
+    }
 }
