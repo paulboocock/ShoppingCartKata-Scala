@@ -2,7 +2,7 @@ package net.paulboocock.shoppingcart
 
 import net.paulboocock.shoppingcart.basket.Basket
 import net.paulboocock.shoppingcart.item.ItemRepository
-import net.paulboocock.shoppingcart.offers.{Offer, OfferProvider, OffersRepository}
+import net.paulboocock.shoppingcart.offers.{Offer, OfferProvider}
 
 class ShoppingCart {
   private val _basket: Basket = new Basket()
@@ -14,6 +14,6 @@ class ShoppingCart {
   }
 
   def Offers(): Vector[Offer] = {
-    _basket.items.distinct.map(b => OfferProvider(b.name).findQualifiedOffers(_basket))
+    _basket.items.distinct.flatMap(b => OfferProvider(b.barcode)).map(op => op.findQualifiedOffers(_basket))
   }
 }

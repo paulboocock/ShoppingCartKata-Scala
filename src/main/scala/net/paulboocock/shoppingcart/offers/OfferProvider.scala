@@ -7,5 +7,10 @@ trait OfferProvider {
 }
 
 object OfferProvider {
-  def apply(barcode: String): OfferProvider = ThresholdOffer("Apple 3 for 120", "Apple", 30, 3)
+  def apply(barcode: String): Option[OfferProvider] = barcode match {
+    case "Apple" => Option(ThresholdOffer("Apple 3 for 120", "Apple", 30, 3))
+    case "Banana" => Option(ThresholdOffer("Banana 5 for 80", "Banana", 20, 5))
+    case "Turnip" => Option(ThresholdOffer("Turnip BOGOF", "Turnip", 75, 2))
+    case _ => None
+  }
 }

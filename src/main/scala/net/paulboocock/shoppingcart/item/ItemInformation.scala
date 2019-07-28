@@ -1,5 +1,5 @@
 package net.paulboocock.shoppingcart.item
 
 trait ItemInformation {
-  val name: String
+  val barcode: String
 }
